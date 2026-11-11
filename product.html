@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Product Details | LUXE D’AMOUR</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product.css">
+  <script src="product.js" defer></script>
+</head>
+
+<body class="product-page">
+
+  <div class="announcement">
+    LUXURY STREETWEAR · EST. 2026 · INDONESIA
+  </div>
+
+  <header class="site-header">
+    <a href="index.html#home" class="logo">LUXE D’AMOUR</a>
+
+    <nav class="navigation">
+      <a href="index.html#home">HOME</a>
+      <a href="index.html#shop">SHOP</a>
+      <a href="index.html#story">OUR STORY</a>
+      <a href="index.html#contact">CONTACT</a>
+    </nav>
+
+    <a class="product-bag" href="index.html#shop">
+      CONTINUE SHOPPING ↗
+    </a>
+  </header>
+
+  <main class="product-detail">
+    <a href="index.html#shop" class="product-back">
+      ← BACK TO COLLECTION
+    </a>
+
+    <div class="product-layout">
+
+      <div class="detail-image-wrap">
+        <span class="detail-label">LUXE D’AMOUR ESSENTIALS</span>
+        <img id="detail-image" src="" alt="Foto produk LUXE D’AMOUR">
+      </div>
+
+      <section class="detail-info">
+        <p class="eyebrow">THE ESSENTIAL COLLECTION</p>
+
+        <h1 id="detail-name">Product Name</h1>
+
+        <p class="detail-price" id="detail-price"></p>
+
+        <div class="detail-divider"></div>
+
+        <p class="detail-description" id="detail-description"></p>
+
+        <div class="detail-field">
+  <label for="detail-size" class="field-title">
+    SIZE
+  </label>
+
+  <select id="detail-size" class="detail-size">
+    <option value="">SELECT SIZE</option>
+    <option value="S">S</option>
+    <option value="M">M</option>
+    <option value="L">L</option>
+    <option value="XL">XL</option>
+    <option value="ONE SIZE">ONE SIZE</option>
+  </select>
+</div>
+
+        <div class="detail-field">
+          <label for="detail-quantity" class="field-title">
+            QUANTITY
+          </label>
+
+          <div class="detail-quantity">
+            <button type="button" id="quantity-minus" aria-label="Kurangi jumlah">−</button>
+            <input id="detail-quantity" type="number" min="1" max="99" value="1">
+            <button type="button" id="quantity-plus" aria-label="Tambah jumlah">+</button>
+          </div>
+        </div>
+
+        <button type="button" id="detail-add" class="button detail-add-button">
+          ADD TO BAG ↗
+        </button>
+
+        <p id="detail-message" class="detail-message" role="status"></p>
+
+        <div class="detail-perks">
+          <p>✦ Minimal design. Strong identity.</p>
+          <p>✦ Everyday streetwear essentials.</p>
+          <p>✦ LUXE D’AMOUR · INDONESIA</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer product-footer">
+    <a href="index.html" class="logo">LUXE D’AMOUR</a>
+    <p>Quiet luxury. Loud identity.</p>
+    <span>© 2026 LUXE D’AMOUR</span>
+  </footer>
+
+</body>
+</html>

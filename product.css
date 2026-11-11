@@ -1,0 +1,365 @@
+
+.product-page {
+  background: var(--black);
+  color: var(--ivory);
+}
+
+.product-bag {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.product-detail {
+  width: min(1200px, 86%);
+  margin: 0 auto;
+  padding: 40px 0 100px;
+}
+
+.product-back {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #B8B2A7;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+
+.product-back:hover {
+  color: var(--gold);
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 8%;
+  align-items: start;
+}
+
+.detail-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #20201C;
+}
+
+.detail-image-wrap img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.detail-label {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 1;
+  padding: 8px 11px;
+  background: #E9E3D7;
+  color: #171714;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.detail-info {
+  padding-top: 28px;
+}
+
+.detail-info .eyebrow {
+  color: var(--gold);
+}
+
+.detail-info h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.detail-price {
+  margin-top: 18px;
+  font-size: 16px;
+}
+
+.detail-divider {
+  margin: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.detail-description {
+  max-width: 430px;
+  color: #B8B2A7;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.detail-field {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.field-title {
+  color: #B8B2A7;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+.detail-quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(243, 240, 232, 0.22);
+}
+
+.detail-quantity button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  color: var(--ivory);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.detail-quantity button:hover {
+  background: #292923;
+}
+
+.detail-quantity input {
+  width: 48px;
+  height: 42px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ivory);
+  text-align: center;
+  font: inherit;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.detail-quantity input::-webkit-inner-spin-button,
+.detail-quantity input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.detail-add-button {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.detail-message {
+  min-height: 24px;
+  margin-top: 14px;
+  color: var(--gold);
+  font-size: 11px;
+}
+
+.detail-perks {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: #B8B2A7;
+  font-size: 10px;
+  line-height: 2.5;
+}
+
+.product-footer {
+  border-top-color: var(--line);
+}
+
+@media (max-width: 760px) {
+  .product-detail {
+    width: 90%;
+    padding: 28px 0 65px;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .detail-info {
+    padding-top: 0;
+  }
+
+  .product-bag {
+    font-size: 8px;
+  }
+
+  .product-page .site-header {
+    padding: 0 5%;
+    gap: 12px;
+  }
+
+  .product-page .navigation {
+    display: none;
+  }
+}
+
+/* ==========================================
+   LUXE D'AMOUR — PRODUCT PAGE ENHANCEMENT
+   Visual only: keep existing JavaScript
+========================================== */
+
+.product-page {
+  background: #f7f4ed;
+  color: #171613;
+}
+
+/* Product layout */
+.product-page .product-detail,
+.product-page .product-container,
+.product-page .detail-container,
+.product-page .product-layout {
+  gap: 56px;
+}
+
+/* Product image */
+.product-page #detail-image {
+  display: block;
+  width: 100%;
+  max-height: 760px;
+  object-fit: cover;
+  background: #e9e5dc;
+}
+
+/* Product name */
+.product-page #detail-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: #171613;
+}
+
+/* Price */
+.product-page #detail-price {
+  font-size: 19px;
+  font-weight: 600;
+  color: #8b7046;
+  margin: 16px 0;
+}
+
+/* Description */
+.product-page #detail-description {
+  color: #777168;
+  line-height: 1.9;
+  font-size: 14px;
+  max-width: 480px;
+}
+
+/* Color and size information */
+.product-page #detail-color {
+  color: #4d4941;
+  font-size: 14px;
+}
+
+/* Form labels */
+.product-page .field-title,
+.product-page .detail-field label {
+  display: block;
+  margin-bottom: 10px;
+  color: #302c26;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+}
+
+/* Size selector */
+.product-page #detail-size {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d8d0c3;
+  border-radius: 0;
+  background: #fffdf8;
+  color: #24211c;
+  font: inherit;
+  cursor: pointer;
+  outline-offset: 3px;
+}
+
+/* Quantity input */
+.product-page #detail-quantity {
+  min-height: 46px;
+  border: 1px solid #d8d0c3;
+  border-radius: 0;
+  background: #fffdf8;
+  color: #24211c;
+  text-align: center;
+}
+
+/* Quantity buttons */
+.product-page #quantity-minus,
+.product-page #quantity-plus {
+  min-width: 42px;
+  min-height: 42px;
+  border: 1px solid #d8d0c3;
+  border-radius: 0;
+  background: transparent;
+  color: #24211c;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.product-page #quantity-minus:hover,
+.product-page #quantity-plus:hover {
+  background: #24211c;
+  color: #fffdf8;
+}
+
+/* Add to bag */
+.product-page #detail-add {
+  min-height: 54px;
+  width: 100%;
+  border: 1px solid #201e19;
+  border-radius: 0;
+  background: #201e19;
+  color: #fffdf8;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.product-page #detail-add:hover:not(:disabled) {
+  background: #8b7046;
+  border-color: #8b7046;
+}
+
+.product-page #detail-add:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Feedback message */
+.product-page #detail-message {
+  color: #76603e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .product-page .product-detail,
+  .product-page .product-container,
+  .product-page .detail-container,
+  .product-page .product-layout {
+    gap: 28px;
+  }
+
+  .product-page #detail-image {
+    max-height: 520px;
+  }
+
+  .product-page #detail-name {
+    font-size: 32px;
+  }
+}

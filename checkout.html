@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | LUXE D’AMOUR</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="checkout.js" defer></script>
+</head>
+
+<body class="checkout-page">
+
+  <header class="checkout-header">
+    <a href="./index.html" class="logo">LUXE D’AMOUR</a>
+
+    <a href="./index.html#shop" class="back-to-shop">
+      ← CONTINUE SHOPPING
+    </a>
+  </header>
+
+  <main class="checkout-container">
+
+    <div class="checkout-intro">
+      <p class="eyebrow">ALMOST YOURS</p>
+      <h1>Complete your <em>order.</em></h1>
+      <p>Isi detail pengiriman untuk melanjutkan pesananmu.</p>
+    </div>
+
+    <div class="checkout-layout">
+
+      <section class="checkout-form-section">
+        <div class="checkout-section-heading">
+          <span>01</span>
+          <h2>Informasi pembeli</h2>
+        </div>
+
+        <form id="checkout-form">
+
+          <div class="form-field">
+            <label for="buyer-name">Nama lengkap</label>
+            <input
+              id="buyer-name"
+              name="name"
+              type="text"
+              placeholder="Nama penerima"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="buyer-phone">Nomor WhatsApp</label>
+            <input
+              id="buyer-phone"
+              name="phone"
+              type="tel"
+              placeholder="Contoh: 081234567890"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="buyer-address">Alamat lengkap</label>
+            <textarea
+              id="buyer-address"
+              name="address"
+              rows="4"
+              placeholder="Jalan, desa, kecamatan, kota, dan kode pos"
+              autocomplete="street-address"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="buyer-note">Catatan pesanan (opsional)</label>
+            <textarea
+              id="buyer-note"
+              name="note"
+              rows="2"
+              placeholder="Ukuran, warna, atau catatan tambahan"
+            ></textarea>
+          </div>
+
+          <div class="checkout-section-heading payment-heading">
+            <span>02</span>
+            <h2>Metode pembayaran</h2>
+          </div>
+
+          <div class="form-field">
+            <label for="payment-method">Pilih metode pembayaran</label>
+            <select
+              id="payment-method"
+              name="payment"
+              required
+            >
+              <option value="">Pilih metode pembayaran</option>
+              <option value="Transfer bank">Transfer bank</option>
+              <option value="E-wallet">E-wallet</option>
+              <option value="COD (konfirmasi terlebih dahulu)">
+                COD (konfirmasi terlebih dahulu)
+              </option>
+            </select>
+            <p class="field-note">
+              Pembayaran dan ketersediaan COD perlu dikonfirmasi dengan admin.
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            id="place-order"
+            class="button place-order-button"
+          >
+            BUAT RINGKASAN PESANAN ↗
+          
+<div class="checkout-actions">
+  <button
+    type="submit"
+    class="button place-order-button"
+  >
+    <span>KIRIM PESAN VIA WHATSAPP ↗</span>
+  </button>
+
+  <button
+    type="button"
+    id="instagram-order"
+    class="button instagram-order-button"
+  >
+    KIRIM PESAN VIA INSTAGRAM ↗
+  </button>
+</div>
+
+<p class="checkout-disclaimer">
+  Pesanan akan dikirim setelah kamu melanjutkan melalui aplikasi.
+  Harga akhir, ongkir, dan pembayaran dikonfirmasi oleh admin.
+</p>

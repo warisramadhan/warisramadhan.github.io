@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE D’AMOUR | Luxury Streetwear</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    LUXURY STREETWEAR · EST. 2026 · INDONESIA
+  </div>
+
+  <header class="site-header">
+    <a href="#home" class="logo">LUXE D’AMOUR</a>
+
+    <nav class="navigation" id="navigation">
+      <a href="#home">HOME</a>
+      <a href="shop.html">SHOP</a>
+      <a href="story.html">OUR STORY</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <button class="cart-button" id="open-cart">
+      BAG (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-image"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">THE NEW COLLECTION — 2026</p>
+
+        <h1>
+          Quiet luxury.<br>
+          <em>Loud identity.</em>
+        </h1>
+
+        <p class="hero-description">
+          More than just clothes.<br>
+          It’s a lifestyle.
+        </p>
+
+        <a href="#shop" class="button">DISCOVER COLLECTION ↗</a>
+      </div>
+
+      <div class="hero-caption">
+        LUXE D’AMOUR<br>
+        STREETWEAR / INDONESIA
+      </div>
+    </section>
+
+    <section class="shop section-wrap" id="shop">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CURATED ESSENTIALS</p>
+          <h2>Selected pieces<span>.</span></h2>
+          <p class="muted">Everyday staples. Unmistakable identity.</p>
+        </div>
+
+        <label>
+          <span class="visually-hidden">Filter produk</span>
+          <select id="product-filter">
+            <option value="all">All products</option>
+            <option value="tops">Tops</option>
+            <option value="outerwear">Outerwear</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="product-grid">
+
+        <article class="product-card" data-product-card data-category="tops">
+          
+<a href="./product.html?id=tee"
+   class="product-image image-tee">
+  <span class="product-label">BESTSELLER</span>
+  <span class="quick-add">VIEW PRODUCT ↗</span>
+</a>
+
+            <span class="product-label">BESTSELLER</span>
+            <span class="quick-add">＋ ADD TO BAG</span>
+          </button>
+          <div class="product-info">
+            <div>
+              <h3>Luxe Star Tee</h3>
+              <p>Heavyweight cotton · Black</p>
+            </div>
+            <span>Rp 199.000</span>
+          </div>
+          
+<a href="./product.html?id=tee" class="add-link">
+  VIEW PRODUCT
+</a>
+
+        </article>
+
+        <article class="product-card" data-product-card data-category="outerwear">
+          
+<a href="./product.html?id=layer"
+   class="product-image image-hoodie">
+  <span class="product-label">BESTSELLER</span>
+  <span class="quick-add">VIEW PRODUCT ↗</span>
+</a>
+
+            <span class="quick-add">＋ ADD TO BAG</span>
+          </button>
+          <div class="product-info">
+            <div>
+              <h3>Signature Hoodie</h3>
+              <p>Relaxed fit · Washed black</p>
+            </div>
+            <span>Rp 329.000</span>
+          </div>
+          
+<a href="./product.html?id=layer" class="add-link">
+  VIEW PRODUCT
+</a>
+
+        </article>
+
+        <article class="product-card" data-product-card data-category="outerwear">
+          
+<a href="./product.html?id=jacket"
+   class="product-image image-jacket">
+  <span class="product-label">BESTSELLER</span>
+  <span class="quick-add">VIEW PRODUCT ↗</span>
+</a>
+
+            <span class="product-label">NEW ARRIVAL</span>
+            <span class="quick-add">＋ ADD TO BAG</span>
+          </button>
+          <div class="product-info">
+            <div>
+              <h3>Statement Jacket</h3>
+              <p>Utility silhouette · Black</p>
+            </div>
+            <span>Rp 699.000</span>
+          </div>
+          <a href="./product.html?id=jacket" class="add-link">
+  VIEW PRODUCT
+</a>
+        </article>
+
+        <article class="product-card" data-product-card data-category="accessories">
+          
+<a href="./product.html?id=cap"
+   class="product-image image-cap">
+  <span class="product-label">BESTSELLER</span>
+  <span class="quick-add">VIEW PRODUCT ↗</span>
+</a>
+
+            <span class="quick-add">＋ ADD TO BAG</span>
+          </button>
+          <div class="product-info">
+            <div>
+              <h3>Classic Cap</h3>
+              <p>Everyday essential · Black</p>
+            </div>
+            <span>Rp 129.000</span>
+          </div>
+         <a href="./product.html?id=cap" class="add-link">
+  VIEW PRODUCT
+</a>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="story section-wrap" id="story">
+      <p class="eyebrow">OUR PHILOSOPHY</p>
+      <h2>Style is personal.<br><em>Make it yours.</em></h2>
+      <p class="muted">
+        Dibuat untuk mereka yang berani mengekspresikan identitasnya.
+        Desain minimalis, karakter kuat, dan gaya yang tetap relevan.
+      </p>
+      <a href="#shop" class="button">EXPLORE THE COLLECTION ↗</a>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <a href="#home" class="logo">LUXE D’AMOUR</a>
+    <p>Quiet luxury. Loud identity.</p>
+    <a href="https://www.instagram.com/warysss__/" target="_blank" rel="noopener noreferrer">
+      INSTAGRAM ↗
+    </a>
+    <div class="footer-bottom">
+      © 2026 LUXE D’AMOUR · STREETWEAR · INDONESIA
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+    <div class="cart-heading">
+      <div>
+        <p class="eyebrow">YOUR SELECTION</p>
+        <h2>Shopping bag</h2>
+      </div>
+      <button id="close-cart" class="close-cart" aria-label="Tutup keranjang">×</button>
+    </div>
+
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Subtotal</span>
+        <strong id="cart-total">Rp 0</strong>
+      </div>
+
+      <button id="checkout-button" class="button checkout-button">
+        CONTINUE TO CHECKOUT ↗
+      </button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status"></div>
+
+</body>
+</html>
