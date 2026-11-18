@@ -76,6 +76,43 @@
               autocomplete="street-address"
               required
             ></textarea>
+            <div class="checkout-section-heading">
+  <span>02</span>
+  <h2>Pengiriman</h2>
+</div>
+
+<div class="form-field">
+  <label for="shipping-destination">Cari kecamatan atau kelurahan tujuan</label>
+  <input
+    type="text"
+    id="shipping-destination"
+    placeholder="Contoh: Bekasi Barat"
+    autocomplete="off"
+  >
+  <div id="destination-results"></div>
+  <input type="hidden" id="destination-id">
+  <p class="field-note">
+    Pilih lokasi tujuan dari hasil pencarian agar ongkir dapat dihitung.
+  </p>
+</div>
+
+<div class="form-field">
+  <label for="shipping-courier">Pilih kurir</label>
+  <select id="shipping-courier">
+    <option value="">Pilih kurir</option>
+    <option value="jne">JNE</option>
+    <option value="jnt">J&T</option>
+    <option value="sicepat">SiCepat</option>
+    <option value="pos">POS Indonesia</option>
+    <option value="tiki">TIKI</option>
+  </select>
+</div>
+
+<button type="button" id="check-shipping" class="button">
+  CEK ONGKIR ↗
+</button>
+
+<div id="shipping-results"></div>
           </div>
 
           <div class="form-field">
@@ -85,10 +122,10 @@
               name="note"
               rows="2"
               placeholder="Ukuran, warna, atau catatan tambahan"
-            ></textarea>
+                        ></textarea>
           </div>
 
-          <div class="checkout-section-heading payment-heading">
+          <div class="checkout-section-heading">
             <span>02</span>
             <h2>Metode pembayaran</h2>
           </div>
@@ -112,19 +149,13 @@
             </p>
           </div>
 
-          <button
-            type="submit"
-            id="place-order"
-            class="button place-order-button"
-          >
-            BUAT RINGKASAN PESANAN ↗
-          
-<div class="checkout-actions">
+         <div class="checkout-actions">
   <button
     type="submit"
+    id="place-order"
     class="button place-order-button"
   >
-    <span>KIRIM PESAN VIA WHATSAPP ↗</span>
+    BUAT RINGKASAN PESANAN ↗
   </button>
 
   <button
@@ -140,3 +171,11 @@
   Pesanan akan dikirim setelah kamu melanjutkan melalui aplikasi.
   Harga akhir, ongkir, dan pembayaran dikonfirmasi oleh admin.
 </p>
+
+        </form>
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>
