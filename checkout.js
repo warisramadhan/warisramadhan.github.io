@@ -102,7 +102,7 @@ function renderCheckout() {
     emptyMessage.textContent = "Keranjang kamu masih kosong.";
 
     checkoutItems.appendChild(emptyMessage);
-    checkoutTotal.textContent = formatRupiah(0);
+   checkoutTotal.textContent = formatRupiah(getTotal());
     return;
   }
 
@@ -136,8 +136,7 @@ details.append(name, size, quantity);
     checkoutItems.appendChild(row);
   });
 
-  checkoutTotal.textContent = formatRupiah(getSubtotal());
-}
+ checkoutTotal.textContent = formatRupiah(getTotal());
 
 // Buat pesan pesanan dari data formulir
 function buildOrderMessage() {
@@ -173,7 +172,18 @@ function buildOrderMessage() {
     ...productLines,
     "",
     "Subtotal: " + formatRupiah(getSubtotal()),
-    "Ongkir: Menunggu konfirmasi admin",
+    "Ongkir: " + (
+  selectedShipping
+    ? formatRupiah(selectedShipping.cost)
+    : "Belum dihitung"
+),
+"Kurir: " + (
+  selectedShipping
+    ? selectedShipping.courier.toUpperCase() +
+      " " + selectedShipping.service
+    : "Belum dipilih"
+),
+"TOTAL: " + formatRupiah(getTotal()),
     "",
     "DATA PEMBELI",
     "Nama: " + buyerName,
@@ -358,4 +368,206 @@ if (destinationInput && destinationResults && destinationId) {
 
 
 // Jalankan saat halaman dibuka
-renderCheckout();
+
+// ==========================================
+// RAJAONGKIR - HITUNG ONGKIR OTOMATIS
+// ==========================================
+
+const ORIGIN_ID = "6524";
+
+const courierSelect =
+  document.getElementById("shipping-courier");
+
+const checkShippingButton =
+  document.getElementById("check-shipping");
+
+const shippingResults =
+  document.getElementById("shipping-results");
+
+let selectedShipping = null;
+
+function getTotalWeight() {
+  return cart.reduce(function (total, item) {
+    return total + (item.weight * item.quantity);
+  }, 0);
+}
+
+function getTotal() {
+  return getSubtotal() +
+    (selectedShipping ? selectedShipping.cost : 0);
+}
+
+function renderShippingTotal() {
+  const summary = document.createElement("div");
+  summary.className = "shipping-summary";
+
+  const subtotal = document.createElement("p");
+  subtotal.textContent =
+    "Subtotal: " + formatRupiah(getSubtotal());
+
+  const shipping = document.createElement("p");
+  shipping.textContent =
+    "Ongkir: " +
+    (selectedShipping
+      ? formatRupiah(selectedShipping.cost)
+      : "Belum dipilih");
+
+  const total = document.createElement("strong");
+  total.textContent =
+    "TOTAL: " + formatRupiah(getTotal());
+
+  summary.append(subtotal, shipping, total);
+  shippingResults.appendChild(summary);
+
+  if (checkoutTotal) {
+    checkoutTotal.textContent = formatRupiah(getTotal());
+  }
+}
+
+if (checkShippingButton && shippingResults && courierSelect) {
+
+  checkShippingButton.addEventListener("click", async function () {
+
+    cart = readCart();
+
+    if (cart.length === 0) {
+      alert("Keranjang masih kosong.");
+      return;
+    }
+
+    if (!destinationId.value) {
+      alert("Silakan pilih alamat tujuan terlebih dahulu.");
+      return;
+    }
+
+    if (!courierSelect.value) {
+      alert("Silakan pilih kurir terlebih dahulu.");
+      return;
+    }
+
+    selectedShipping = null;
+
+    const weight = getTotalWeight();
+
+    shippingResults.textContent = "Sedang menghitung ongkir...";
+
+    checkShippingButton.disabled = true;
+
+    try {
+
+      const params = new URLSearchParams({
+        origin: ORIGIN_ID,
+        destination: destinationId.value,
+        weight: String(weight),
+        courier: courierSelect.value
+      });
+
+      const response = await fetch(
+        RAJAONGKIR_WORKER + "/calculate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: params.toString()
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !Array.isArray(result.data)) {
+        throw new Error(
+          result.message ||
+          result.meta?.message ||
+          "Gagal menghitung ongkir."
+        );
+      }
+
+      shippingResults.replaceChildren();
+
+      if (result.data.length === 0) {
+        shippingResults.textContent =
+          "Tidak ada layanan pengiriman tersedia.";
+        return;
+      }
+
+      const heading = document.createElement("p");
+      heading.textContent =
+        "Pilih layanan pengiriman:";
+      shippingResults.appendChild(heading);
+
+      result.data.forEach(function (option) {
+
+        const cost = Number(option.cost);
+
+        if (!Number.isFinite(cost) || cost < 0) return;
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.textContent =
+          (option.name || option.code) +
+          " - " + (option.service || "") +
+          " - " + formatRupiah(cost) +
+          (option.etd ? " (" + option.etd + ")" : "");
+
+        button.addEventListener("click", function () {
+
+          selectedShipping = {
+            courier: option.code || courierSelect.value,
+            service: option.service || "",
+            description: option.description || "",
+            cost: cost,
+            etd: option.etd || ""
+          };
+
+          renderCheckout();
+
+          shippingResults.replaceChildren();
+
+          const selected = document.createElement("p");
+          selected.textContent =
+            "Layanan dipilih: " +
+            selectedShipping.courier.toUpperCase() +
+            " " + selectedShipping.service;
+
+          shippingResults.appendChild(selected);
+
+          renderShippingTotal();
+        });
+
+        shippingResults.appendChild(button);
+      });
+
+      if (!shippingResults.querySelector("button")) {
+        shippingResults.textContent =
+          "Tidak ada layanan pengiriman yang valid.";
+      }
+
+    } catch (error) {
+
+      shippingResults.textContent =
+        "Gagal menghitung ongkir. Silakan coba lagi.";
+
+      console.error("RajaOngkir:", error);
+
+    } finally {
+
+      checkShippingButton.disabled = false;
+
+    }
+
+  });
+
+  destinationInput.addEventListener("input", function () {
+    selectedShipping = null;
+  });
+
+  courierSelect.addEventListener("change", function () {
+    selectedShipping = null;
+  });
+}
+
+// Jalankan saat halaman dibuka
+renderCheckout();}
