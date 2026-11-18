@@ -94,6 +94,7 @@ function getSubtotal() {
 function renderCheckout() {
   if (!checkoutItems || !checkoutTotal) return;
 
+
   checkoutItems.replaceChildren();
 
   if (cart.length === 0) {
@@ -105,7 +106,7 @@ function renderCheckout() {
    checkoutTotal.textContent = formatRupiah(getTotal());
     return;
   }
-}
+
 
   cart.forEach(function (item) {
     const row = document.createElement("div");
@@ -570,5 +571,6 @@ if (checkShippingButton && shippingResults && courierSelect) {
   });
 }
 
+
 // Jalankan saat halaman dibuka
-renderCheckout();
+renderCheckout();}
