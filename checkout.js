@@ -40,20 +40,22 @@ function readCart() {
       return [];
     }
 
-    const productCatalog = {
-  tee: { name: "Luxe Star Tee", price: 199000 },
-  layer: { name: "Signature Hoodie", price: 329000 },
-  jacket: { name: "Statement Jacket", price: 699000 },
-  cap: { name: "Classic Cap", price: 129000 },
-  oversized: { name: "Essential Oversized Tee", price: 229000 },
-  graphic: { name: "Midnight Graphic Tee", price: 249000 },
-  cargo: { name: "Utility Cargo Pants", price: 379000 },
-  denim: { name: "Urban Baggy Denim", price: 429000 },
-  varsity: { name: "Classic Varsity Jacket", price: 599000 },
-  ziphoodie: { name: "Essential Zip Hoodie", price: 399000 },
-  crossbody: { name: "Utility Crossbody Bag", price: 279000 },
-  beanie: { name: "Essential Knit Beanie", price: 149000 }
+    
+const productCatalog = {
+  tee: { name: "Luxe Star Tee", price: 199000, weight: 250 },
+  layer: { name: "Signature Hoodie", price: 329000, weight: 700 },
+  jacket: { name: "Statement Jacket", price: 699000, weight: 800 },
+  cap: { name: "Classic Cap", price: 129000, weight: 200 },
+  oversized: { name: "Essential Oversized Tee", price: 229000, weight: 300 },
+  graphic: { name: "Midnight Graphic Tee", price: 249000, weight: 250 },
+  cargo: { name: "Utility Cargo Pants", price: 379000, weight: 600 },
+  denim: { name: "Urban Baggy Denim", price: 429000, weight: 700 },
+  varsity: { name: "Classic Varsity Jacket", price: 599000, weight: 900 },
+  ziphoodie: { name: "Essential Zip Hoodie", price: 399000, weight: 750 },
+  crossbody: { name: "Utility Crossbody Bag", price: 279000, weight: 350 },
+  beanie: { name: "Essential Knit Beanie", price: 149000, weight: 150 }
 };
+
     return saved
       .filter(function (item) {
         return (
@@ -70,8 +72,8 @@ function readCart() {
   id: item.id,
   name: productCatalog[item.id].name,
   price: productCatalog[item.id].price,
-  quantity: item.quantity,
-  size: typeof item.size === "string" ? item.size : ""
+weight: productCatalog[item.id].weight,
+quantity: item.quantity,
 };
       });
   } catch (error) {
@@ -90,6 +92,8 @@ function getSubtotal() {
 
 // Tampilkan ringkasan belanja
 function renderCheckout() {
+  if (!checkoutItems || !checkoutTotal) return;
+
   checkoutItems.replaceChildren();
 
   if (cart.length === 0) {
@@ -255,6 +259,103 @@ instagramButton.addEventListener("click", async function () {
     "_blank"
   );
 });
+
+
+// ==========================================
+// RAJAONGKIR - PENCARIAN ALAMAT
+// ==========================================
+
+const RAJAONGKIR_WORKER =
+  "https://luxe-damour-rajaongkir.ahmad-waris111.workers.dev";
+
+const destinationInput =
+  document.getElementById("shipping-destination");
+
+const destinationResults =
+  document.getElementById("destination-results");
+
+const destinationId =
+  document.getElementById("destination-id");
+
+let destinationTimer;
+
+if (destinationInput && destinationResults && destinationId) {
+
+  destinationInput.addEventListener("input", function () {
+    clearTimeout(destinationTimer);
+
+    destinationId.value = "";
+    destinationResults.replaceChildren();
+
+    const keyword = destinationInput.value.trim();
+
+    if (keyword.length < 2) return;
+
+    const loading = document.createElement("p");
+    loading.textContent = "Mencari alamat...";
+    destinationResults.appendChild(loading);
+
+    destinationTimer = setTimeout(async function () {
+      try {
+        const response = await fetch(
+          RAJAONGKIR_WORKER +
+          "/destination?search=" +
+          encodeURIComponent(keyword)
+        );
+
+        const result = await response.json();
+
+        destinationResults.replaceChildren();
+
+        if (!response.ok || !Array.isArray(result.data)) {
+          throw new Error(
+            result.message || "Data alamat tidak ditemukan."
+          );
+        }
+
+        if (result.data.length === 0) {
+          destinationResults.textContent =
+            "Alamat tidak ditemukan.";
+          return;
+        }
+
+        result.data.forEach(function (location) {
+          const button = document.createElement("button");
+
+          button.type = "button";
+          button.textContent =
+            location.label || location.subdistrict_name ||
+            "Lokasi tujuan";
+
+          button.addEventListener("click", function () {
+            destinationInput.value = button.textContent;
+            destinationId.value = location.id;
+
+            destinationResults.replaceChildren();
+
+            const selected = document.createElement("p");
+            selected.textContent = "Lokasi berhasil dipilih.";
+            destinationResults.appendChild(selected);
+          });
+
+          destinationResults.appendChild(button);
+        });
+
+      } catch (error) {
+        destinationResults.replaceChildren();
+
+        const message = document.createElement("p");
+        message.textContent =
+          "Gagal mencari alamat. Silakan coba lagi.";
+
+        destinationResults.appendChild(message);
+
+        console.error("RajaOngkir:", error);
+      }
+    }, 500);
+  });
+}
+
 
 // Jalankan saat halaman dibuka
 renderCheckout();
